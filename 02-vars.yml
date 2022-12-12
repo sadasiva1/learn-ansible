@@ -44,4 +44,26 @@
       ansible.builtin.debug:
         msg: Hostname = {{ ansible_hostname }}
 
+- name: Demo on runtime variables
+  hosts: all
+  connection: local
+  tasks:
+    - name: Execute uptime shell command
+      ansible.builtin.shell: uptime
+      register: out
+
+    - name: Set a fact
+      ansible.builtin.set_fact:
+        UPTIME: "{{out.stdout}}"
+
+    - name: Print out
+      ansible.builtin.debug:
+        msg: "{{UPTIME}}"
+
+- name: Vars Print from roles
+  hosts: all
+  connection: local
+  roles:
+    - sample
+
 
