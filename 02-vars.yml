@@ -1,5 +1,5 @@
 - name: Demo on vars on play level
-  hosts: localhost
+  hosts: all
   vars:
      URL: play.example.com
   tasks:
@@ -8,7 +8,7 @@
         msg: URL = {{ URL }}
 
 - name: Demo on vars on task level
-  hosts: localhost
+  hosts: all
   tasks:
     - name: print URL
       ansible.builtin.debug:
@@ -17,7 +17,7 @@
         URL: task.example.com
 
 - name: Demo on vars from file on play level
-  hosts: localhost
+  hosts: all
   vars_files:
    - sample-vars.yml
   tasks:
